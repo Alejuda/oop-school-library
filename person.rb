@@ -1,6 +1,6 @@
-class person
+class Person
   attr_reader :id, :name, :age
-  def initialize (age, parent_permission: true, name: "Unknown")
+  def initialize (age, name = "Unknown", parent_permission = true)
     @id = generate_id
     @name = name
     @age = age
