@@ -1,4 +1,5 @@
 require_relative 'nameable'
+require_relative 'rental'
 
 class Person < Nameable
   attr_accessor :name, :age
@@ -19,6 +20,11 @@ class Person < Nameable
 
   def can_use_services?
     of_age? || @parent_permission
+  end
+
+  def add_rental(date, book)
+    rental = Rental.new(date, self, book)
+    @rentals << rental
   end
 
   private
