@@ -13,7 +13,7 @@ class App
 
   def list_books
     @books.each do |book|
-      puts "Title: \"#{book.title}\", Author: '#{book.author}"
+      puts "Title: \"#{book.title}\", Author: #{book.author}"
     end
   end
 
@@ -53,14 +53,23 @@ class App
       p 'Age: '
       person_age = gets.chomp.to_i
       p "Name: "
-      person_name = gets.chomp.to_s
+      person_name = gets.chomp.to_s.capitalize
       p "Specialization: "
-      person_specialization = gets.chomp.to_s
+      person_specialization = gets.chomp.to_s.capitalize
       @people << Teacher.new(person_age, person_specialization, name: person_name)
       puts 'Teacher created successfully'
     else
       p 'Error: Enter a valid number'
       create_person
     end
+  end
+
+  def create_book
+    print "Title: "
+    book_title = gets.chomp.to_s.capitalize
+    print "Author: "
+    book_author = gets.chomp.to_s.capitalize
+    @books << Book.new(book_title, book_author)
+    puts "Book created succesfully"
   end
 end
