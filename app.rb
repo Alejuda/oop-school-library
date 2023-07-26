@@ -56,7 +56,7 @@ class App
       person_name = gets.chomp.to_s
       p "Specialization: "
       person_specialization = gets.chomp.to_s
-      @people << Teacher.new(age = person_age, name = person_name, specialization = specialization)
+      @people << Teacher.new(person_age, person_specialization, name: person_name)
       puts 'Teacher created successfully'
     else
       p 'Error: Enter a valid number'
