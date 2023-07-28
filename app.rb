@@ -4,6 +4,7 @@ require_relative 'book'
 require_relative 'rental'
 
 class App
+  attr_reader :people
   def initialize
     puts 'Welcome to School Library App!'
     @books = []
@@ -58,7 +59,7 @@ class App
       person_name = gets.chomp.to_s.capitalize
       print 'Specialization: '
       person_specialization = gets.chomp.to_s.capitalize
-      @people << Teacher.new(person_age, person_specialization, name: person_name)
+      Teacher.new(person_age, person_specialization, name: person_name)
       puts 'Teacher created successfully'
     else
       puts 'Error: Enter a valid number'
