@@ -1,7 +1,7 @@
 require_relative 'app'
 
 class Run
-  def inicialize()
+  def initialize
     @app = App.new
   end
 
