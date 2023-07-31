@@ -2,7 +2,6 @@ require_relative 'app'
 require_relative 'user_data'
 
 class Run
-
   include UserData
 
   def initialize
