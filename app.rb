@@ -12,24 +12,38 @@ class App
   end
 
   def list_books
-    @books.each do |book|
-      puts "Title: \"#{book.title}\", Author: #{book.author}"
+    if @books.empty?
+      puts
+      puts 'No books found'
+    else
+      @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
     end
   end
 
   def list_people
-    @people.each do |person|
-      puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, AGE: #{person.age}"
+    if @people.empty?
+      puts
+      puts 'No people found'
+    else
+      @people.each_with_index do |person, index|
+        puts "#{index})- [#{person.class}] Age: #{person.age}, Name: #{person.name}, ID: #{person.id}"
+      end
     end
   end
 
   def list_rentals
-    print 'ID of person: '
-    person_id = gets.chomp.to_i
-    puts 'Rentals:'
-    @rentals.each do |rental|
-      unless rental.person.id != person_id
-        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+    if @rentals.empty?
+      puts 'No rental mode'
+    else
+      print 'ID of person: '
+      person_id = gets.chomp.to_i
+      person_rentals = @rentals.select { |rental| rental.person.id == person_id }
+      if person_rentals.empty?
+        puts 'Person ID not found'
+      else
+        person_rentals.each do |list|
+          puts "Date: #{list.date}, Books: #{list.book.title} written by Author: #{list.book.author}"
+        end
       end
     end
   end
@@ -85,20 +99,15 @@ class App
 
   def create_rental
     puts 'Select a book from the following list by number'
-    @books.each_with_index do |book, index|
-      puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
-    end
-    book_index = gets.chomp.to_i
-    puts ''
-    puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index do |person, index|
-      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, AGE: #{person.age}"
-    end
-    person_index = gets.chomp.to_i
-    puts ''
-    print 'Date: '
-    rent_date = gets.chomp.to_s
-    @rentals << Rental.new(rent_date, @people[person_index], @books[book_index])
-    puts 'Rental created successfully'
+    list_books
+    selected_book = gets.chomp.to_i
+    book = @books[selected_book]
+    puts 'Select a person from the following list by number'
+    list_people
+    selected_person = gets.chomp.to_i
+    person = @people[selected_person]
+    print 'Date (DD/MM/YYYY): '
+    date = gets.chomp
+    @rentals << Rental.new(date, @people[selected_person], @books[selected_book])
   end
 end
