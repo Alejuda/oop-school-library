@@ -68,11 +68,8 @@ class App
   end
 
   def create_book
-    print 'Title: '
-    book_title = gets.chomp.to_s.capitalize
-    print 'Author: '
-    book_author = gets.chomp.to_s.capitalize
-    @books << Book.new(book_title, book_author)
+    data = get_book_info
+    @books << Book.new(data[0], data[1])
     puts 'Book created succesfully'
   end
 

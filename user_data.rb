@@ -24,5 +24,12 @@ module UserData
       person_id = gets.chomp.to_i
       person_id
   end
-    
+
+  def get_book_info
+    print 'Title: '
+    book_title = gets.chomp.to_s.capitalize
+    print 'Author: '
+    book_author = gets.chomp.to_s.capitalize
+    return [book_title, book_author]
+  end
 end
