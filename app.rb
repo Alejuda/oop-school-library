@@ -2,8 +2,12 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
+require_relative "user_data"
 
 class App
+
+  include UserData
+
   def initialize
     puts 'Welcome to School Library App!'
     @books = []
@@ -26,7 +30,7 @@ class App
       puts 'No people found'
     else
       @people.each_with_index do |person, index|
-        puts "#{index})- [#{person.class}] Age: #{person.age}, Name: #{person.name}, ID: #{person.id}"
+        puts "#{index}) [#{person.class}] Age: #{person.age}, Name: #{person.name}, ID: #{person.id}"
       end
     end
   end
@@ -49,43 +53,19 @@ class App
   end
 
   def create_student
-    print 'Age: '
-    person_age = gets.chomp.to_i
-    print 'Name: '
-    person_name = gets.chomp.to_s
-    print 'Has parent permission? [Y/N]: '
-    person_permission = gets.chomp.to_s.capitalize
-    @people << if person_permission == 'N'
-                 Student.new(person_age, classroom: nil, name: person_name, parent_permission: false)
+    data = get_students_info
+    @people << if data[2] == 'N'
+                 Student.new(data[0], classroom: nil, name: data[1], parent_permission: false)
                else
-                 Student.new(person_age, classroom: nil, name: person_name, parent_permission: true)
+                 Student.new(data[0], classroom: nil, name: data[1], parent_permission: true)
                end
     puts 'Student created successfully'
   end
 
   def create_teacher
-    print 'Age: '
-    person_age = gets.chomp.to_i
-    print 'Name: '
-    person_name = gets.chomp.to_s.capitalize
-    print 'Specialization: '
-    person_specialization = gets.chomp.to_s.capitalize
-    @people << Teacher.new(person_age, person_specialization, name: person_name)
+    data = get_teacher_info
+    @people << Teacher.new(data[0], data[2], name: data[1])
     puts 'Teacher created successfully'
-  end
-
-  def create_person
-    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
-    person_type = gets.chomp.to_i
-    case person_type
-    when 1
-      create_student
-    when 2
-      create_teacher
-    else
-      puts 'Error: Enter a valid number'
-      create_person
-    end
   end
 
   def create_book

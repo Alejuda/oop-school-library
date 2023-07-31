@@ -1,11 +1,15 @@
 require_relative 'app'
+require_relative 'user_data'
 
 class Run
+
+  include UserData
+
   def initialize
     @app = App.new
   end
 
-  def show_options()
+  def show_options
     puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
@@ -34,7 +38,16 @@ class Run
     when 2
       @app.list_people
     when 3
-      @app.create_person
+      print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+      person_type = gets.chomp.to_i
+      case person_type
+      when 1
+        @app.create_student
+      when 2
+        @app.create_teacher
+      else
+        puts 'Error: Enter a valid number'
+      end
     when 4
       @app.create_book
     when 5
