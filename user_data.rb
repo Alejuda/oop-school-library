@@ -18,4 +18,11 @@ module UserData
     person_specialization = gets.chomp.to_s.capitalize
     return [person_age, person_name, person_specialization]
   end
+
+  def get_rental_id
+    print 'ID of person: '
+      person_id = gets.chomp.to_i
+      person_id
+  end
+    
 end

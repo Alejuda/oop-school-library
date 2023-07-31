@@ -39,8 +39,7 @@ class App
     if @rentals.empty?
       puts 'No rental mode'
     else
-      print 'ID of person: '
-      person_id = gets.chomp.to_i
+      person_id = get_rental_id
       person_rentals = @rentals.select { |rental| rental.person.id == person_id }
       if person_rentals.empty?
         puts 'Person ID not found'
