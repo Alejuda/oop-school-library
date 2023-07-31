@@ -34,32 +34,40 @@ class App
     end
   end
 
+  def create_student
+    print 'Age: '
+    person_age = gets.chomp.to_i
+    print 'Name: '
+    person_name = gets.chomp.to_s
+    print 'Has parent permission? [Y/N]: '
+    person_permission = gets.chomp.to_s.capitalize
+    @people << if person_permission == 'N'
+                 Student.new(person_age, classroom: nil, name: person_name, parent_permission: false)
+               else
+                 Student.new(person_age, classroom: nil, name: person_name, parent_permission: true)
+               end
+    puts 'Student created successfully'
+  end
+
+  def create_teacher
+    print 'Age: '
+    person_age = gets.chomp.to_i
+    print 'Name: '
+    person_name = gets.chomp.to_s.capitalize
+    print 'Specialization: '
+    person_specialization = gets.chomp.to_s.capitalize
+    @people << Teacher.new(person_age, person_specialization, name: person_name)
+    puts 'Teacher created successfully'
+  end
+
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     person_type = gets.chomp.to_i
     case person_type
     when 1
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s
-      print 'Has parent permission? [Y/N]: '
-      person_permission = gets.chomp.to_s.capitalize
-      @people << if person_permission == 'N'
-                   Student.new(person_age, classroom: nil, name: person_name, parent_permission: false)
-                 else
-                   Student.new(person_age, classroom: nil, name: person_name, parent_permission: true)
-                 end
-      puts 'Student created successfully'
+      create_student
     when 2
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s.capitalize
-      print 'Specialization: '
-      person_specialization = gets.chomp.to_s.capitalize
-      @people << Teacher.new(person_age, person_specialization, name: person_name)
-      puts 'Teacher created successfully'
+      create_teacher
     else
       puts 'Error: Enter a valid number'
       create_person
