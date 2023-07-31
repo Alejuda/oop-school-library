@@ -130,6 +130,14 @@ You can now start creating new objects with the class constructors.
 - Twitter: [@nacho_fino](https://twitter.com/nacho_fino)
 - LinkedIn: [Ignacio Fino](https://www.linkedin.com/in/ignacio-fino-320916209)
 
+👤 **Mohamed Gamil Eldimardash**
+
+- GitHub: [@github](https://github.com/MMGGYY66)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohamed-eldimardash-0023a3b5/)
+- Twitter: [twitter](https://twitter.com/MOHAMEDELDIMARd)
+- Facebook: [facebook](https://www.facebook.com/MOHAMED.ELDIMARDASH/)
+- StackOverflow: [stackoverflow](https://stackoverflow.com/users/13605630/mohamed-gamil-eldimardash)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
