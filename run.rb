@@ -1,11 +1,11 @@
 require_relative 'app'
 
-class Run 
-  def inicialize ()
-    @app = App.new()
+class Run
+  def inicialize()
+    @app = App.new
   end
 
-  def show_options ()
+  def show_options()
     puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
@@ -27,8 +27,7 @@ class Run
     end
   end
 
-   # rubocop:disable Metrics/CyclomaticComplexity
-   def options(input)
+  def options(input)
     case input
     when 1
       @app.list_books
@@ -49,5 +48,4 @@ class Run
       puts 'Invalid Entry'
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
 end
