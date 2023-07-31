@@ -16,4 +16,15 @@ class Run
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
   end
+
+  def entry_point
+    puts 'Welcome to School Library App!'
+
+    loop do
+      show_options
+      app_choice = gets.chomp.to_i
+      options(app_choice)
+    end
+  end
+
 end
