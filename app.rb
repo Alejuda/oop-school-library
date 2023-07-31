@@ -101,11 +101,11 @@ class App
     puts 'Select a book from the following list by number'
     list_books
     selected_book = gets.chomp.to_i
-    book = @books[selected_book]
+    @books[selected_book]
     puts 'Select a person from the following list by number'
     list_people
     selected_person = gets.chomp.to_i
-    person = @people[selected_person]
+    @people[selected_person]
     print 'Date (DD/MM/YYYY): '
     date = gets.chomp
     @rentals << Rental.new(date, @people[selected_person], @books[selected_book])
