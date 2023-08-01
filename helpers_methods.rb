@@ -125,4 +125,8 @@ module LoadData
     file.close
     rentals
   end
+
+  def get_person(id)
+    @people.find { |person| person.id == id }
+  end
 end
