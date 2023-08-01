@@ -3,18 +3,24 @@ require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'user_data'
+require_relative './helpers_methods'
 
 class App
-  include UserData
+  attr_accessor :books, :people, :rentals
+
+  include SaveData
+  include LoadData
+   
 
   def initialize
     puts 'Welcome to School Library App!'
-    @books = []
-    @people = []
-    @rentals = []
+    @books = load_books
+    @people = load_people
+    @rentals = load_rentals  
   end
 
   def list_books
+    load_books
     if @books.empty?
       puts
       puts 'No books found'
@@ -58,18 +64,21 @@ class App
                  Student.new(data[0], classroom: nil, name: data[1], parent_permission: true)
                end
     puts 'Student created successfully'
+    save_people
   end
 
   def create_teacher
     data = teacher_info
     @people << Teacher.new(data[0], data[2], name: data[1])
     puts 'Teacher created successfully'
+    save_people
   end
 
   def create_book
     data = book_info
     @books << Book.new(data[0], data[1])
     puts 'Book created succesfully'
+    save_books
   end
 
   def create_rental
@@ -83,5 +92,8 @@ class App
     @people[selected_person]
     date = date_rental_info
     @rentals << Rental.new(date, @people[selected_person], @books[selected_book])
+    save_rentals(@rentals)
+    puts
+    puts 'Rental created successfully'
   end
 end
