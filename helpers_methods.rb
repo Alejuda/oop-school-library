@@ -129,4 +129,8 @@ module LoadData
   def get_person(id)
     @people.find { |person| person.id == id }
   end
+
+  def get_book(id)
+    @books.find { |book| book.id == id }
+  end
 end
