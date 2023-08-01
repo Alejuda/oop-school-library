@@ -1,0 +1,9 @@
+[
+  {
+    "age": 14,
+    "name": "nacho",
+    "json_class": "Student",
+    "classroom": null,
+    "parent_permission": true
+  }
+]

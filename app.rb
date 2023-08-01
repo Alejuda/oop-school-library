@@ -83,6 +83,23 @@ class App
     save_books
   end
 
+  def create_person
+    print 'Do you want to create (1) a student or (2) a teacher? [Input the number]: '
+    num_input = gets.chomp.to_i
+    person_option(num_input)
+  end
+
+  def person_option(num_input)
+    case num_input
+    when 1
+      create_student
+    when 2
+      create_teacher
+    else
+      puts 'Invalid Entry'
+    end
+  end
+
   def create_rental
     puts 'Select a book from the following list by number'
     list_books

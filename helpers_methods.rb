@@ -27,7 +27,7 @@ module SaveData
   def save_people
     people_data = []
     people.each do |person|
-      person_prop = { id: person.id, name: person.name, age: person.age, json_class: person.json_class }
+      person_prop = { age: person.age, name: person.name, json_class: person.json_class }
       if person.json_class == 'Student'
         person_prop[:classroom] = person.classroom
         person_prop[:parent_permission] = person.parent_permission
