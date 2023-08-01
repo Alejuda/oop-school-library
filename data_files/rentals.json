@@ -1,0 +1,22 @@
+[
+  {
+    "date": "121212",
+    "title": "Asd",
+    "author": "Asdd",
+    "id": 2,
+    "name": "nacho",
+    "age": 45,
+    "type": "Student",
+    "classroom": null
+  },
+  {
+    "date": "12/12/12",
+    "title": "Asd",
+    "author": "Asdd",
+    "id": 85,
+    "name": "Nacho",
+    "age": 45,
+    "type": "Teacher",
+    "specialization": "Math"
+  }
+]
