@@ -27,7 +27,7 @@ module SaveData
   def save_people
     people_data = []
     people.each do |person|
-      person_prop = {id: person.id, age: person.age, name: person.name, json_class: person.json_class }
+      person_prop = { id: person.id, age: person.age, name: person.name, json_class: person.json_class }
       if person.json_class == 'Student'
         person_prop[:classroom] = person.classroom
         person_prop[:parent_permission] = person.parent_permission
@@ -87,12 +87,13 @@ module LoadData
       if data != ''
         JSON.parse(data).map do |person|
           if person['json_class'] == 'Student'
-            student = Student.new(person['age'], classroom: person['classroom'], name: person['name'], parent_permission: person['parent_permission'])
+            student = Student.new(person['age'], classroom: person['classroom'], name: person['name'],
+                                                 parent_permission: person['parent_permission'])
             student.id = person['id']
             people << student
           else
             teacher = Teacher.new(person['age'], person['specialization'], name: person['name'],
-                                  parent_permission: person['parent_permission'])
+                                                                           parent_permission: person['parent_permission'])
             teacher.id = person['id']
             people << teacher
           end
@@ -111,12 +112,13 @@ module LoadData
     rental_data.each do |rental|
       if rental['json_class'] == 'Teacher'
         teacher = Teacher.new(rental['age'], rental['specialization'], name: rental['name'],
-                              parent_permission: rental['parent_permission'])
+                                                                       parent_permission: rental['parent_permission'])
         teacher.id = rental['id']
         book = Book.new(rental['title'], rental['author'])
         new_rental = Rental.new(rental['date'], book, teacher)
       else
-        student = Student.new(rental['age'], classroom: rental['classroom'], name: rental['name'], parent_permission: rental['parent_permission'])
+        student = Student.new(rental['age'], classroom: rental['classroom'], name: rental['name'],
+                                             parent_permission: rental['parent_permission'])
         student.id = rental['id']
         book = Book.new(rental['title'], rental['author'])
         new_rental = Rental.new(rental['date'], book, student)
