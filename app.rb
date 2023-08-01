@@ -13,7 +13,6 @@ class App
   include SaveData
   include LoadData
 
-
   def initialize
     puts 'Welcome to School Library App!'
     @books = load_books
