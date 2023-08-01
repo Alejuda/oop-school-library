@@ -67,37 +67,38 @@ module SaveData
 end
 
 module LoadData
-    def load_books
-      books = []
-      if File.exist?('./data_files/books.json')
-        data = File.read('./data_files/books.json')
-        if data != ''
-          JSON.parse(data).map do |book|
-            books.push(Book.new(book['title'], book['author']))
-          end
+  def load_books
+    books = []
+    if File.exist?('./data_files/books.json')
+      data = File.read('./data_files/books.json')
+      if data != ''
+        JSON.parse(data).map do |book|
+          books.push(Book.new(book['title'], book['author']))
         end
       end
-      books
     end
+    books
+  end
 
-    def load_people
-        people = []
-        if File.exist?('./data_files/people.json')
-          data = File.read('./data_files/people.json')
-          if data != ''
-            JSON.parse(data).map do |person|
-              if person['json_class'] == 'Student'
-                student = Student.new(person['classroom'], person['age'], person['name'], person['parent_permission'])
-                student.id = person['id']
-                people << student
-              else
-                teacher = Teacher.new(person['age'], person['specialization'], person['name'], person['parent_permission'])
-                teacher.id = person['id']
-                people << teacher
-              end
-            end
+  def load_people
+    people = []
+    if File.exist?('./data_files/people.json')
+      data = File.read('./data_files/people.json')
+      if data != ''
+        JSON.parse(data).map do |person|
+          if person['json_class'] == 'Student'
+            student = Student.new(person['classroom'], person['age'], person['name'], person['parent_permission'])
+            student.id = person['id']
+            people << student
+          else
+            teacher = Teacher.new(person['age'], person['specialization'], person['name'],
+                                  person['parent_permission'])
+            teacher.id = person['id']
+            people << teacher
           end
         end
-        people
       end
+    end
+    people
+  end
 end
