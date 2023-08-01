@@ -79,5 +79,25 @@ module LoadData
       end
       books
     end
-    
+
+    def load_people
+        people = []
+        if File.exist?('./data_files/people.json')
+          data = File.read('./data_files/people.json')
+          if data != ''
+            JSON.parse(data).map do |person|
+              if person['json_class'] == 'Student'
+                student = Student.new(person['classroom'], person['age'], person['name'], person['parent_permission'])
+                student.id = person['id']
+                people << student
+              else
+                teacher = Teacher.new(person['age'], person['specialization'], person['name'], person['parent_permission'])
+                teacher.id = person['id']
+                people << teacher
+              end
+            end
+          end
+        end
+        people
+      end
 end
