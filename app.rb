@@ -110,7 +110,7 @@ class App
     selected_person = person_rental_info
     @people[selected_person]
     date = date_rental_info
-    @rentals << Rental.new(date, @people[selected_person], @books[selected_book])
+    @rentals << Rental.new(date, @books[selected_book], @people[selected_person])
     save_rentals(@rentals)
     puts
     puts 'Rental created successfully'
