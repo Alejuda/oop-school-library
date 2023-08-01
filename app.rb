@@ -3,20 +3,22 @@ require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
 require_relative 'user_data'
-require_relative './helpers_methods'
+require_relative 'helpers_methods'
 
 class App
   attr_accessor :books, :people, :rentals
 
+  include UserData
+
   include SaveData
   include LoadData
-   
+
 
   def initialize
     puts 'Welcome to School Library App!'
     @books = load_books
     @people = load_people
-    @rentals = load_rentals  
+    @rentals = load_rentals
   end
 
   def list_books

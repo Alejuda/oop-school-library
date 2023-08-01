@@ -1,8 +1,11 @@
 require_relative 'app'
 require_relative 'user_data'
+require_relative 'helpers_methods'
 
 class Run
   include UserData
+  include SaveData
+  include LoadData
 
   def initialize
     @app = App.new
