@@ -101,4 +101,28 @@ module LoadData
     end
     people
   end
+
+  def load_rentals
+    rentals = []
+    return rentals unless File.exist?('./data_files/rentals.json')
+
+    file = File.open('./data_files/rentals.json')
+    rental_data = JSON.parse(file.read)
+    rental_data.each do |rental|
+      if rental['json_class'] == 'Teacher'
+        teacher = Teacher.new(rental['age'], rental['specialization'], rental['name'], rental['parent_permission'])
+        teacher.id = rental['id']
+        book = Book.new(rental['title'], rental['author'])
+        new_rental = Rental.new(rental['date'], book, teacher)
+      else
+        student = Student.new(rental['classroom'], rental['age'], rental['name'], rental['parent_permission'])
+        student.id = rental['id']
+        book = Book.new(rental['title'], rental['author'])
+        new_rental = Rental.new(rental['date'], book, student)
+      end
+      rentals << new_rental
+    end
+    file.close
+    rentals
+  end
 end
