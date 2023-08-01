@@ -65,3 +65,19 @@ module SaveData
     File.write('./data_files/rentals.json', JSON.pretty_generate(rental_arr))
   end
 end
+
+module LoadData
+    def load_books
+      books = []
+      if File.exist?('./data_files/books.json')
+        data = File.read('./data_files/books.json')
+        if data != ''
+          JSON.parse(data).map do |book|
+            books.push(Book.new(book['title'], book['author']))
+          end
+        end
+      end
+      books
+    end
+    
+end
