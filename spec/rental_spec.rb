@@ -3,8 +3,8 @@ require_relative '../book'
 require_relative '../person'
 
 describe Rental do
-  let(:person) { Person.new(25, name: 'Nacho')}
-  let(:book) { Book.new('Title', 'Author')}
+  let(:person) { Person.new(25, name: 'Nacho') }
+  let(:book) { Book.new('Title', 'Author') }
   let(:rental) { Rental.new('2023-04-20', book, person) }
 
   describe '#new' do
