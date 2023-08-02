@@ -13,5 +13,13 @@
     "name": "Nacho",
     "json_class": "Teacher",
     "specialization": "Math"
+  },
+  {
+    "id": 328,
+    "age": 22,
+    "name": "gg",
+    "json_class": "Student",
+    "classroom": null,
+    "parent_permission": true
   }
 ]
